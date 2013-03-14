@@ -125,8 +125,20 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'rest_framework',
+    'social_auth',
 )
 
+LOGIN_URL = '/login-form/'
+LOGIN_REDIRECT_URL = '/logged-in/'
+LOGIN_ERROR_URL = '/login-error/'
+
+AUTHENTICATION_BACKENDS = (
+	'social_auth.backends.contrib.weibo.WeiboBackend',
+        'django.contrib.auth.backends.ModelBackend',
+)
+
+WEIBO_CLIENT_KEY = '/'
+WEIBO_CLIENT_SECRET = '.'
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
@@ -146,10 +158,7 @@ LOGGING = {
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
         }
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
+    }, 'loggers': { 'django.request': { 'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
         },
