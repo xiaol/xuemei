@@ -38,3 +38,12 @@ pip install uwsgi
 apt-get install nginx
 
 uwsgi --socket 127.0.0.1:8000 --chdir /home/ubuntu/xuemei/mysite --wsgi-file mysite/wsgi.py --processes 4 --threads 2 --stats 127.0.0.1:9191 --virtualenv /home/ubuntu/xuemei/env
+
+pip install django-socketio
+
+pip install pinax-theme-bootstrap-account
+
+pip install django-userena
+http://docs.django-userena.org/en/latest/installation.html
+sudo pip install -U PIL
+

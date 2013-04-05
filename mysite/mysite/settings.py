@@ -1,8 +1,7 @@
 # Django settings for mysite project.
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-
+TEMPLATE_DEBUG = DEBUG 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -107,11 +106,10 @@ ROOT_URLCONF = 'mysite.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
+TEMPLATE_DIRS = ( # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".  # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
+
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -126,15 +124,27 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'rest_framework',
     'social_auth',
+    'guardian',
+    'userena',
+    'userena.contrib.umessages',
+    'profiles',
 )
 
-LOGIN_URL = '/login-form/'
+#EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+
 LOGIN_REDIRECT_URL = '/logged-in/'
 LOGIN_ERROR_URL = '/login-error/'
+LOGIN_URL = '/accounts/signin/'
+LOGOUT_URL = '/accounts/signout/'
+
+AUTH_PROFILE_MODULE = 'profiles.Profile'
+USERENA_ACTIVATION_REQUIRED = False
 
 AUTHENTICATION_BACKENDS = (
 	'social_auth.backends.contrib.weibo.WeiboBackend',
-        'django.contrib.auth.backends.ModelBackend',
+        'userena.backends.UserenaAuthenticationBackend',
+    	'guardian.backends.ObjectPermissionBackend',
+    	'django.contrib.auth.backends.ModelBackend',
 )
 
 WEIBO_CLIENT_KEY = '/'
@@ -164,3 +174,6 @@ LOGGING = {
         },
     }
 }
+
+# Needed for Django guardian
+ANONYMOUS_USER_ID = -1

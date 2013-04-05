@@ -16,4 +16,5 @@ urlpatterns = patterns('',
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include('rest_framework.urls',namespace='rest_framework')),
     url(r'', include('social_auth.urls')),
+    url(r'^accounts/',include('userena.urls')),
 )
