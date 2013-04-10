@@ -20,6 +20,7 @@ locale-gen en_US.UTF-8
 dpkg-reconfigure locales
 
 sudo -u postgres createuser --superuser <someuser> -P
+sudo -u postgres createdb -O xuemei xuemeidb
 
 sudo vi /etc/postgresql/9.1/main/pg_hba.conf
 
