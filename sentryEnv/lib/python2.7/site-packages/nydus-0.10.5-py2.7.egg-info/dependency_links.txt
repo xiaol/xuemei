@@ -1,0 +1,1 @@
+https://github.com/andyet/thoonk.py/tarball/master#egg=thoonk

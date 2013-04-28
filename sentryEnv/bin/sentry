@@ -1,0 +1,10 @@
+#!/home/ubuntu/xuemei/sentryEnv/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'sentry==5.5.0-DEV','console_scripts','sentry'
+__requires__ = 'sentry==5.5.0-DEV'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('sentry==5.5.0-DEV', 'console_scripts', 'sentry')()
+    )

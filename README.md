@@ -13,6 +13,9 @@ $sudo apt-get update
 
 $sudo apt-get install postgresql
 
+sudo apt-get build-dep python-psycopg2
+pip install psycopg2
+
 export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -48,3 +51,7 @@ pip install django-userena
 http://docs.django-userena.org/en/latest/installation.html
 sudo pip install -U PIL
 
+pip install sentry //5.4.5
+need celery > 3.0.17
+
+sudo apt-get install postfix //for sentry email

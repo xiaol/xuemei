@@ -1,0 +1,13 @@
+
+
+[test]
+Django>=1.2,<1.5
+mock
+nose
+psycopg2
+pycassa
+pylibmc
+redis
+riak
+thoonk
+unittest2

@@ -1,0 +1,5 @@
+django-templatetag-sugar>=0.1
+
+[test]
+unittest2
+django

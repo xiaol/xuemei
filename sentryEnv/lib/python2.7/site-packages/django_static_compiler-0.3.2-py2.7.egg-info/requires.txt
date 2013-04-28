@@ -1,0 +1,8 @@
+django
+
+[tests]
+exam
+mock
+pytest
+pytest-django
+unittest2

@@ -1,0 +1,60 @@
+{% extends "sentry/teams/groups/list.html" %}
+
+{% load url from future %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load sentry_helpers %}
+
+{% block title %}
+    {{ group.name }} | {{ block.super }}
+{% endblock %}
+
+{% block bodyclass %} with-left-sidebar{% endblock %}
+
+{% block above_content %}
+    <div class="project-controls">
+        <a href="{% url 'sentry-manage-access-groups' team.slug %}" class="dashboard-icon"><i aria-hidden="true" class="icon-list"></i></a>
+        <select class="project-selector" data-placeholder="{% trans "Select a Project" %}">
+            <option value=""></option>
+            {% for g in group_list %}
+                <option {% if g == group %} selected="selected"{% endif %} data-url="{% url 'sentry-edit-access-group' g.team.slug g.id %}">{{ g.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    <ul class="nav nav-list">
+        <li class="nav-header">{% trans "Access Group" %}</li>
+        <li{% if page == 'details' %} class="active"{% endif %}>
+            <a href="{% url 'sentry-edit-access-group' group.team.slug group.id %}">{% trans "Settings" %}</a>
+        </li>
+        <li{% if page == 'members' %} class="active"{% endif %}>
+            <a href="{% url 'sentry-access-group-members' group.team.slug group.id %}">{% trans "Members" %}</a>
+        </li>
+        <li{% if page == 'projects' %} class="active"{% endif %}>
+            <a href="{% url 'sentry-access-group-projects' group.team.slug group.id %}">{% trans "Projects" %}</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block inner %}
+    <div class="page-header">
+        <h2>{% trans "Group Settings" %}</h2>
+    </div>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form|as_crispy_errors }}
+
+        {% for field in form %}
+            {% include "sentry/partial/_form_field.html" %}
+        {% endfor %}
+
+        <fieldset class="form-actions">
+            <button type="submit" class="btn btn-primary">{% trans "Save Changes" %}</button>
+            <a href="{% url 'sentry-remove-access-group' group.team.slug group.id %}" class="btn btn-danger">{% trans "Remove Access Group" %}</a>
+        </fieldset>
+    </form>
+    
+{% endblock %}

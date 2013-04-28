@@ -1,0 +1,36 @@
+{% extends "sentry/teams/base.html" %}
+
+{% load url from future %}
+{% load i18n %}
+
+{% block title %}{% trans "New Team" %} | {{ block.super }}{% endblock %}
+
+{% block breadcrumb %}
+    <li class="divider"></li>
+    <li><a href="{% url 'sentry-new-team' %}">{% trans "New Team" %}</a></li>
+{% endblock %}
+
+{% block main %}
+    <section class="body">
+        <div class="page-header">
+            <h2>{% trans "Create a New Team" %}</h2>
+        </div>
+
+        <p>{% blocktrans %}Teams in Sentry represent a collection of users and projects. They're the top level component
+           of your organization allowing you to control access and scope of events.{% endblocktrans %}</p>
+
+        <br>
+
+        <form class="form-stacked" action="" method="post">
+            {% csrf_token %}
+            <fieldset>
+                {% for field in form %}
+                    {% include "sentry/partial/_form_field.html" %}
+                {% endfor %}
+            </fieldset>
+            <div class="actions">
+                <button type="submit" class="btn btn-primary">{% trans "Create Team" %}</button>
+            </div>
+        </form>
+    </section>
+{% endblock %}
