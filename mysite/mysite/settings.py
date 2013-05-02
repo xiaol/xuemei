@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     'userena',
     'userena.contrib.umessages',
     'profiles',
+    'south',
 )
 
 #EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
