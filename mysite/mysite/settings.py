@@ -129,6 +129,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'rest_framework',
+    'rest_framework.authtoken',
     'social_auth',
     'guardian',
     'userena',
@@ -136,7 +137,11 @@ INSTALLED_APPS = (
     'profiles',
     'south',
 )
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
 #EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 
 LOGIN_REDIRECT_URL = '/logged-in/'
@@ -146,6 +151,7 @@ LOGOUT_URL = '/accounts/signout/'
 
 AUTH_PROFILE_MODULE = 'profiles.Profile'
 USERENA_ACTIVATION_REQUIRED = False
+USERENA_USE_HTTPS = False
 
 AUTHENTICATION_BACKENDS = (
 	'social_auth.backends.contrib.weibo.WeiboBackend',
@@ -153,6 +159,7 @@ AUTHENTICATION_BACKENDS = (
     	'guardian.backends.ObjectPermissionBackend',
     	'django.contrib.auth.backends.ModelBackend',
 )
+
 
 WEIBO_CLIENT_KEY = '/'
 WEIBO_CLIENT_SECRET = '.'
