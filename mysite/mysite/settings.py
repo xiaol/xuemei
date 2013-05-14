@@ -135,6 +135,7 @@ INSTALLED_APPS = (
     'userena',
     'userena.contrib.umessages',
     'profiles',
+    'uphotos',
     'south',
 )
 REST_FRAMEWORK = {

@@ -40,7 +40,7 @@ class Profile(UserenaLanguageBaseProfile):
     location =  models.CharField(_('location'), max_length=255, blank=True)
     birth_date = models.DateField(_('birth date'), blank=True, null=True)
     about_me = models.TextField(_('about me'), blank=True)
-
+    
     @property
     def age(self):
         if not self.birth_date: return False
