@@ -137,6 +137,7 @@ INSTALLED_APPS = (
     'profiles',
     'uphotos',
     'south',
+    'follow',
 )
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

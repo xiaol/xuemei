@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.utils.timezone import now
 from django.conf import settings
 from uphotos.managers import PhotoManager
+from follow import utils
 
 # Create your models here.
 
@@ -182,4 +183,5 @@ class Gallery(models.Model):
         """Return a queryset of all the public photos in this gallery."""
         return self.photos.filter(is_public=True)
 
-
+utils.register(Photo)
+utils.register(User)

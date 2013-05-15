@@ -55,3 +55,5 @@ pip install sentry //5.4.5
 need celery > 3.0.17
 
 sudo apt-get install postfix //for sentry email
+
+pip install django-follow https://github.com/caffeinehit/django-follow
