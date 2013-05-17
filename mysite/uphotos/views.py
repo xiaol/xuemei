@@ -36,12 +36,3 @@ def publish_photo(request,publish_form=PublishForm):
 	else:
 	    return Response(form.errors)
 
-@api_view(['POST']
-def like_or_not(request,status=status):
-    """
-    like or not like a photo
-
-    :param status:
-	status indicate the boolean status.
-    """
-    pass

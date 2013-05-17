@@ -57,3 +57,7 @@ need celery > 3.0.17
 sudo apt-get install postfix //for sentry email
 
 pip install django-follow https://github.com/caffeinehit/django-follow
+
+install geodjango https://docs.djangoproject.com/en/dev/ref/contrib/gis/install/
+
+pip install django-filter

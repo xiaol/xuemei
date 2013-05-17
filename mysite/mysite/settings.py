@@ -10,7 +10,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        #'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.contrib.gis.db.backends.postgis', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'xuemeidb',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'xuemei',
@@ -138,11 +139,14 @@ INSTALLED_APPS = (
     'uphotos',
     'south',
     'follow',
+    'django.contrib.gis',
+    'django_filters',
 )
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
-    )
+    ),
+    'DEFAULT_FILTER_BACKENDS': ['rest_framework.filters.DjangoFilterBackend']
 }
 #EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 

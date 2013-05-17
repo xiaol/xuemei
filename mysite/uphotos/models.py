@@ -184,4 +184,4 @@ class Gallery(models.Model):
         return self.photos.filter(is_public=True)
 
 utils.register(Photo)
-utils.register(User)
+#utils.register(User)

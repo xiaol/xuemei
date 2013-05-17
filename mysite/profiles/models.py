@@ -10,6 +10,7 @@ from rest_framework.authtoken.models import Token
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django.contrib.gis.db import models
 
 import logging
 logger = logging.getLogger(__name__)
@@ -37,10 +38,9 @@ class Profile(UserenaLanguageBaseProfile):
                                               blank=True,
                                               null=True)
     website = models.URLField(_('website'), blank=True)
-    location =  models.CharField(_('location'), max_length=255, blank=True)
     birth_date = models.DateField(_('birth date'), blank=True, null=True)
     about_me = models.TextField(_('about me'), blank=True)
-    
+
     @property
     def age(self):
         if not self.birth_date: return False
@@ -55,3 +55,13 @@ class Profile(UserenaLanguageBaseProfile):
                 birthday = self.birth_date.replace(year=today.year, day=day)
             if birthday > today: return today.year - self.birth_date.year - 1
             else: return today.year - self.birth_date.year
+
+
+class Address(models.Model):
+     """ address for profile"""
+     profile = models.ForeignKey(Profile)
+     location = models.PointField(srid=32140,null=True)
+     city = models.CharField(max_length=200)
+     zipcode = models.IntegerField()
+
+     objects = models.GeoManager()
