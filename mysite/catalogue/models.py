@@ -68,11 +68,11 @@ class Payment(models.Model):
         return self.amount_paid>=self.amount
 
 class WalletStore(models.Model):
-    wallet = ForeignKey(
+    wallet = models.ForeignKey(
 	'Wallet',
 	related_name='wallet_store')
 
-    product = ForeignKey(
+    product = models.ForeignKey(
 	'Product',
         related_name='wallet_store')
 

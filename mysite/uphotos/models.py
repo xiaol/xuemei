@@ -6,6 +6,8 @@ from django.conf import settings
 from uphotos.managers import PhotoManager
 from follow import utils
 
+from taggit.managers import TaggableManager
+
 # Create your models here.
 
 # Quality options for JPEG images
@@ -39,8 +41,6 @@ IMAGE_TRANSPOSE_CHOICES = (
 # Default limit for gallery.latest
 LATEST_LIMIT = getattr(settings, 'PHOTOLOGUE_GALLERY_LATEST_LIMIT', None)
 
-# attempt to load the django-tagging TagField from default location,
-# otherwise we substitude a dummy TagField.
 try:
     from tagging.fields import TagField
     tagfield_help_text = _('Separate tags with spaces, put quotes around multiple-word tags.')
@@ -53,6 +53,7 @@ except ImportError:
         def get_internal_type(self):
             return 'CharField'
     tagfield_help_text = _('Django-tagging was not found, tags will be treated as plain text.')
+
 
     # Tell South how to handle this custom field.
     from south.modelsinspector import add_introspection_rules
@@ -74,13 +75,13 @@ class Photo(ImageModel):
     caption = models.TextField(_('caption'), blank=True)
     date_added = models.DateTimeField(_('date added'), default=now)
     is_public = models.BooleanField(_('is public'), default=True, help_text=_('Public photographs will be displayed in the default views.'))
-    tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
     
     publisher = models.ForeignKey(User)
     is_avatar = models.BooleanField(_('is avatar'), default=False, help_text=_('Avatar will be displayed in the Avatar views.'))
     is_confirm = models.BooleanField(_('is comfirm'),default=False, help_text=_('confirmed from upyun'))
     
     objects = PhotoManager()
+    tags = TaggableManager()
 
     class Meta:
         ordering = ['-date_added']
@@ -131,7 +132,6 @@ class Gallery(models.Model):
                                     help_text=_('Public galleries will be displayed in the default views.'))
     photos = models.ManyToManyField('Photo', related_name='galleries', verbose_name=_('photos'),
                                     null=True, blank=True)
-    tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
 
     class Meta:
         ordering = ['-date_added']
