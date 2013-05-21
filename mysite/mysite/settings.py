@@ -141,6 +141,7 @@ INSTALLED_APPS = (
     'follow',
     'django.contrib.gis',
     'django_filters',
+    #'catalogue',
 )
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

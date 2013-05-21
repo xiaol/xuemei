@@ -21,4 +21,5 @@ urlpatterns = patterns('',
     url(r'', include('social_auth.urls')),
     url(r'^accounts/',include('userena.urls')),
     url(r'^photos/',include('uphotos.urls')),
+    url(r'^messages/',include('userena.contrib.umessages.urls')),
 )

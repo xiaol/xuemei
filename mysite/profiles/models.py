@@ -27,6 +27,26 @@ class Profile(UserenaLanguageBaseProfile):
         (1, _('Male')),
         (2, _('Female')),
     )
+    
+    MARITAL_CHOICES = (
+        (1,_('married')),
+        (2,_('single')),
+    )
+
+    CUP_SIZE_CHOICES = ( 
+        (1,_('32A')),
+        (2,_('34B')),
+        (3,_('36C')),
+        (4,_('38D')),
+	(5,_('40E')),
+    )
+
+    FIGURE_CHOICES = (
+        (1,_('slightly fat')),
+        (2,_('strong')),
+        (3,_('standard')),
+        (4,_('slightly thin')),
+    )
 
     user = models.OneToOneField(user_model_label,
                                 unique=True,
@@ -37,10 +57,27 @@ class Profile(UserenaLanguageBaseProfile):
                                               choices=GENDER_CHOICES,
                                               blank=True,
                                               null=True)
-    website = models.URLField(_('website'), blank=True)
-    birth_date = models.DateField(_('birth date'), blank=True, null=True)
+    birth_date = models.DateField(_('birth date'),default=datetime.date.min)
     about_me = models.TextField(_('about me'), blank=True)
+    marital_status = models.PositiveSmallIntegerField(_('marital status'),
+						      choices=MARITAL_CHOICES,
+ 						      blank=True,
+						      null=True) 
+    height = models.IntegerField(default=0,blank=True,null=True)
+    cup_size = models.PositiveSmallIntegerField(_('cup size'),
+                                                      choices=CUP_SIZE_CHOICES,
+						      blank=True, 
+                                                      null=True)
+    figure = models.PositiveSmallIntegerField(_('figure'),
+                                                      choices=FIGURE_CHOICES,
+                                                      blank=True,
+                                                      null=True)
 
+    hobbie = models.CharField(max_length=50,blank=True) 
+    income = models.PositiveIntegerField(blank=True,null=True)
+    message_price = models.PositiveIntegerField(default=0)
+    point = models.IntegerField(default=0)
+    
     @property
     def age(self):
         if not self.birth_date: return False
@@ -55,7 +92,6 @@ class Profile(UserenaLanguageBaseProfile):
                 birthday = self.birth_date.replace(year=today.year, day=day)
             if birthday > today: return today.year - self.birth_date.year - 1
             else: return today.year - self.birth_date.year
-
 
 class Address(models.Model):
      """ address for profile"""
