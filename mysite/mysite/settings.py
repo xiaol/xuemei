@@ -143,6 +143,7 @@ INSTALLED_APPS = (
     'django_filters',
     'catalogue',
     'taggit',
+    'voting',
 )
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -160,6 +161,7 @@ LOGOUT_URL = '/accounts/signout/'
 AUTH_PROFILE_MODULE = 'profiles.Profile'
 USERENA_ACTIVATION_REQUIRED = False
 USERENA_USE_HTTPS = False
+USERENA_WITHOUT_USERNAMES = True
 
 AUTHENTICATION_BACKENDS = (
 	'social_auth.backends.contrib.weibo.WeiboBackend',

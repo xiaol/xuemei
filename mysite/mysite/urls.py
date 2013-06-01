@@ -14,9 +14,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    url(r'^api/toggle/photos/', 'mysite.views.photo_toggle'),
-    url(r'^api/toggle/users/', 'mysite.views.user_toggle'), 
-
     url(r'^api-token-auth/', 'rest_framework.authtoken.views.obtain_auth_token'),
     url(r'', include('social_auth.urls')),
     url(r'^accounts/',include('userena.urls')),

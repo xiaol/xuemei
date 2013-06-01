@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth.models import User
 from django.utils.timezone import now
+from userena.utils import user_model_label
 from django.conf import settings
 from uphotos.managers import PhotoManager
 from follow import utils
@@ -62,7 +62,7 @@ except ImportError:
 class ImageModel(models.Model):
     #image = models.ImageField(_('image'), max_length=IMAGE_FIELD_MAX_LENGTH,
                               #upload_to=get_storage_path)
-    image_url = models.URLField(null=True)
+    url = models.URLField(null=True)
     date_taken = models.DateTimeField(_('date taken'), null=True, blank=True, editable=False)
     view_count = models.PositiveIntegerField(default=0, editable=False)
     crop_from = models.CharField(_('crop from'), blank=True, max_length=10, default='center', choices=CROP_ANCHOR_CHOICES)
@@ -76,8 +76,8 @@ class Photo(ImageModel):
     date_added = models.DateTimeField(_('date added'), default=now)
     is_public = models.BooleanField(_('is public'), default=True, help_text=_('Public photographs will be displayed in the default views.'))
     
-    publisher = models.ForeignKey(User)
-    is_avatar = models.BooleanField(_('is avatar'), default=False, help_text=_('Avatar will be displayed in the Avatar views.'))
+    publisher = models.ForeignKey(user_model_label,
+	related_name='photo')
     is_confirm = models.BooleanField(_('is comfirm'),default=False, help_text=_('confirmed from upyun'))
     
     objects = PhotoManager()

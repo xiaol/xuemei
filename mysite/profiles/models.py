@@ -48,6 +48,12 @@ class Profile(UserenaLanguageBaseProfile):
         (4,_('slightly thin')),
     )
 
+    IDENTIFICATION_CHOICES = (
+        (1,_('Unauthorized')),
+        (2,_('Processing')),
+        (3,_('authorized')),
+    )
+
     user = models.OneToOneField(user_model_label,
                                 unique=True,
                                 verbose_name=_('user'),
@@ -57,7 +63,7 @@ class Profile(UserenaLanguageBaseProfile):
                                               choices=GENDER_CHOICES,
                                               blank=True,
                                               null=True)
-    birth_date = models.DateField(_('birth date'),default=datetime.date.min)
+    birth_date = models.DateField(_('birth date'),default=datetime.date.today)
     about_me = models.TextField(_('about me'), blank=True)
     marital_status = models.PositiveSmallIntegerField(_('marital status'),
 						      choices=MARITAL_CHOICES,
@@ -77,6 +83,10 @@ class Profile(UserenaLanguageBaseProfile):
     income = models.PositiveIntegerField(blank=True,null=True)
     message_price = models.PositiveIntegerField(default=0)
     point = models.IntegerField(default=0)
+
+    identification = models.PositiveSmallIntegerField(_('is identification'),
+							choices=IDENTIFICATION_CHOICES,
+							default=1)
     
     @property
     def age(self):
@@ -95,7 +105,7 @@ class Profile(UserenaLanguageBaseProfile):
 
 class Address(models.Model):
      """ address for profile"""
-     profile = models.ForeignKey(Profile)
+     profile = models.ForeignKey(Profile,related_name='address')
      location = models.PointField(srid=32140,null=True)
      city = models.CharField(max_length=200)
      zipcode = models.IntegerField()

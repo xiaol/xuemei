@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: django-voting
+Version: 0.2
+Summary: Generic voting application for Django
+Home-page: http://github.com/jezdez/django-voting/
+Author: Jannis Leidel
+Author-email: jannis@leidel.info
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Topic :: Utilities

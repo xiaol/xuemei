@@ -61,3 +61,7 @@ pip install django-follow https://github.com/caffeinehit/django-follow
 install geodjango https://docs.djangoproject.com/en/dev/ref/contrib/gis/install/
 
 pip install django-filter
+
+pip install django-taggit
+
+pip install django-voting
