@@ -123,6 +123,10 @@ class Photo(ImageModel):
 
 
 class Gallery(models.Model):
+    GALLERY_TITLE_DEFAULT = (
+	('avatar','avatar'),
+	('identification','identification'),
+    )
     date_added = models.DateTimeField(_('date published'), default=now)
     title = models.CharField(_('title'), max_length=50, unique=True)
     title_slug = models.SlugField(_('title slug'), unique=True,

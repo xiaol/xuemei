@@ -20,10 +20,11 @@ class PublishForm(forms.Form):
         public = self.cleaned_data['is_public']
         
         gallery = Gallery.objects.get_or_ceate(title =title)
-        if title == 'avatar':
+        if title.lower() == 'avatar':
 	    pass
-        elif title == 'identification':
-            self.user.identification = 2
+        elif title.lower() == 'identification':
+            self.user.profile.identification = 2
+	    self.user.profile.save()
         photo = Photo.objects.create(publisher=publishser,is_public=public)      
 
         gallary.photos.add(photo)
